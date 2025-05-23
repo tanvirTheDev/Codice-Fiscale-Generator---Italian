@@ -1,6 +1,6 @@
 import cors from "cors";
 import express from "express";
-import { generateFiscalCode } from "./utils/generateFiscalCode";
+import { generateFiscalCode } from "../utils/generateFiscalCode";
 
 const app = express();
 app.use(cors());
