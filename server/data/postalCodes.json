@@ -1,0 +1,5 @@
+[
+  { "city": "Roma", "province": "RM", "postalCode": "00100" },
+  { "city": "Milano", "province": "MI", "postalCode": "20100" },
+  { "city": "Napoli", "province": "NA", "postalCode": "80100" }
+]

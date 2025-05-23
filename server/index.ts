@@ -1,16 +1,32 @@
 import cors from "cors";
-import express from "express";
+import express, { Request, Response } from "express";
+import postalData from "./data/postalCodes.json";
 import { generateFiscalCode } from "./utils/generateFiscalCode";
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.post("/api/generate", (req, res) => {
+app.post("/api/generate", (req: Request, res: Response) => {
   const { firstName, lastName, gender, dob, place } = req.body;
   const code = generateFiscalCode({ firstName, lastName, gender, dob, place });
   res.json({ code });
 });
+
+app.get("/api/postal-code", (req: Request, res: Response) => {
+  const query = (req.query.query as string)?.toLowerCase();
+  if (!query) return res.status(400).json({ error: "Query is required" });
+
+  const result = postalData.filter(
+    (entry) =>
+      entry.city.toLowerCase().includes(query) ||
+      entry.postalCode.includes(query)
+  );
+
+  res.json(result);
+});
+
+app.get("/", (req: Request, res: Response) => res.send("ok"));
 
 app.listen(5000, () => {
   console.log("Server running on http://localhost:5000");
