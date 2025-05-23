@@ -19,7 +19,10 @@ export default function Form() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await axios.post("http://localhost:5000/api/generate", data);
+    const res = await axios.post(
+      "https://codice-fiscale-backend.onrender.com/api/generate",
+      data
+    );
     setCode(res.data.code);
   };
 
