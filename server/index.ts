@@ -8,9 +8,22 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/generate", (req: Request, res: Response) => {
-  const { firstName, lastName, gender, dob, place } = req.body;
-  const code = generateFiscalCode({ firstName, lastName, gender, dob, place });
-  res.json({ code });
+  const { firstName, lastName, gender, dob, place, provincia } = req.body;
+
+  const result = generateFiscalCode({
+    firstName,
+    lastName,
+    gender,
+    dob,
+    place,
+    provincia,
+  });
+
+  if (result.error) {
+    return res.status(400).json({ error: result.error });
+  }
+
+  res.json({ code: result.code });
 });
 
 app.get("/api/postal-code", (req: Request, res: Response) => {
