@@ -139,17 +139,24 @@ export default function TaxCodeCalculator() {
   const years = Array.from({ length: 125 }, (_, i) => String(2024 - i));
 
   return (
-    <div className="">
-      <div className="flex justify-center border-b-[1px] border-[#ddd]">
-        <img src={logo} className="w-[365px] h-[60px] pb-2" />
+    <div className="h-full md:h-auto md:min-h-[600px] lg:min-h-screen bg-white">
+      <div className="flex justify-center border-b-[1px] border-[#ddd] bg-white">
+        <img
+          src={logo}
+          className="w-[220px] sm:w-[320px] md:w-[365px] h-auto max-h-[60px] pb-2 object-contain"
+          alt="Logo"
+        />
       </div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <div className="flex justify-center h-[600px] mt-10 md:mt-0">
-            <div className="w-full max-w-3xl">
+      <div className="flex justify-center py-4 sm:py-6 md:py-8">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-lg sm:max-w-2xl md:max-w-3xl px-2 sm:px-4 md:px-0"
+        >
+          <div className="flex justify-center">
+            <div className="w-full">
               <div className="overflow-hidden border-4 border-white">
                 {/* Header */}
-                <div className="text-black px-4 sm:px-8 mt-5 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+                <div className="text-black px-2 sm:px-8 mt-5 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
                   <div className="text-black flex-1 text-center sm:text-left">
                     <h1 className="text-2xl sm:text-4xl font-bold tracking-wide">
                       Calcolo Codice Fiscale
@@ -161,7 +168,7 @@ export default function TaxCodeCalculator() {
                 </div>
 
                 {/* Form */}
-                <div className="p-4 sm:p-8 bg-white space-y-4 sm:space-y-6">
+                <div className="p-2 sm:p-6 md:p-8 bg-white space-y-4 sm:space-y-6">
                   {/* Last Name */}
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
                     <Label
@@ -243,7 +250,7 @@ export default function TaxCodeCalculator() {
                         autoComplete="off"
                       />
                       {suggestions.length > 0 && (
-                        <div className="absolute z-10 w-full mt-1 bg-white border-2 border-gray-300 rounded-lg shadow-lg">
+                        <div className="absolute z-10 w-full mt-1 bg-white border-2 border-gray-300 rounded-lg shadow-lg max-h-40 overflow-y-auto">
                           {suggestions.map((city, index) => (
                             <div
                               key={index}
@@ -346,7 +353,7 @@ export default function TaxCodeCalculator() {
               </div>
 
               {/* Submit Button */}
-              <div className="mt-4 sm:mt-6 px-4">
+              <div className="mt-4 sm:mt-6 px-2 sm:px-4">
                 <Button
                   type="submit"
                   disabled={isLoading}
@@ -358,7 +365,7 @@ export default function TaxCodeCalculator() {
 
               {/* Error Message */}
               {error && (
-                <div className="mt-4 sm:mt-6 bg-red-50 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center shadow-md sm:shadow-lg border-2 border-red-300">
+                <div className="mt-4 sm:mt-6 bg-red-50 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center shadow-md sm:shadow-lg border-2 border-red-300 mx-2 sm:mx-4">
                   <p className="text-lg sm:text-xl font-semibold text-red-700">
                     {error}
                   </p>
@@ -367,7 +374,7 @@ export default function TaxCodeCalculator() {
 
               {/* Result */}
               {code && (
-                <div className="mt-4 sm:mt-6 bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 text-center shadow-md sm:shadow-lg border-2 border-green-300">
+                <div className="mt-4 sm:mt-6 bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 text-center shadow-md sm:shadow-lg border-2 border-green-300 mx-2 sm:mx-4">
                   <p className="text-lg sm:text-xl font-semibold text-green-700">
                     Codice Fiscale Generato:{" "}
                     <span className="font-bold">{code}</span>
@@ -376,8 +383,8 @@ export default function TaxCodeCalculator() {
               )}
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
