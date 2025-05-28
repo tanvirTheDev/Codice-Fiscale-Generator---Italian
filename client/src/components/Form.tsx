@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 import axios from "axios";
 import { useState } from "react";
-import logo from "../../src/assets/logo.png";
+import logo from "../../src/assets/logo-codiceitalia-com_895x150.jpg";
 
 // Common Italian cities for autocomplete
 const COMMON_CITIES = [
@@ -108,7 +108,7 @@ export default function TaxCodeCalculator() {
     // https://codice-fiscale-backend.onrender.com
     try {
       const res = await axios.post(
-        "https://codice-fiscale-backend.onrender.com/api/generate",
+        "http://localhost:5000/api/generate",
         payload
       );
       setCode(res.data.code);
@@ -139,253 +139,245 @@ export default function TaxCodeCalculator() {
   const years = Array.from({ length: 125 }, (_, i) => String(2024 - i));
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div
-        className="min-h-screen"
-        style={{
-          background:
-            "linear-gradient(90deg, hsla(221, 45%, 73%, 1) 0%, hsla(220, 78%, 29%, 1) 100%)",
-        }}
-      >
-        <div className="flex items-center justify-center min-h-screen p-4">
-          <div className="w-full max-w-3xl">
-            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-white">
-              {/* Header */}
-              <div className="bg-gradient-to-r from-lime-500 to-green-500 px-4 sm:px-8 py-4 sm:py-6 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center p-2 shadow-lg">
-                  <div className="w-full h-full relative flex items-center justify-center">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-b from-green-600 to-green-700 rounded-full flex items-center justify-center border-2 border-red-500">
-                      <img src={logo} alt="logo" className="w-20 h-20" />
-                    </div>
+    <div className="">
+      <div className="flex justify-center border-b-[1px] border-[#ddd]">
+        <img src={logo} className="w-[365px] h-[60px] pb-2" />
+      </div>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <div className="flex justify-center h-[600px] mt-10 md:mt-0">
+            <div className="w-full max-w-3xl">
+              <div className="overflow-hidden border-4 border-white">
+                {/* Header */}
+                <div className="text-black px-4 sm:px-8 mt-5 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+                  <div className="text-black flex-1 text-center sm:text-left">
+                    <h1 className="text-2xl sm:text-4xl font-bold tracking-wide">
+                      Calcolo Codice Fiscale
+                    </h1>
+                    <p className="text-black text-sm sm:text-lg mt-1 font-medium">
+                      Calcola il codice fiscale online
+                    </p>
                   </div>
                 </div>
-                <div className="text-white flex-1 text-center sm:text-left">
-                  <h1 className="text-2xl sm:text-4xl font-bold tracking-wide">
-                    Calcolo Codice Fiscale
-                  </h1>
-                  <p className="text-green-100 text-sm sm:text-lg mt-1 font-medium">
-                    Calcola il codice fiscale online
-                  </p>
-                </div>
-              </div>
 
-              {/* Form */}
-              <div className="p-4 sm:p-8 bg-white space-y-4 sm:space-y-6">
-                {/* Last Name */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-                  <Label
-                    htmlFor="lastName"
-                    className="text-lime-700 font-bold text-base sm:text-lg sm:min-w-[140px] sm:text-right"
-                  >
-                    COGNOME
-                  </Label>
-                  <Input
-                    id="lastName"
-                    name="lastName"
-                    value={data.lastName}
-                    onChange={handleInputChange}
-                    className="flex-1 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg"
-                    required
-                  />
-                </div>
-
-                {/* First Name and Gender */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-                  <Label
-                    htmlFor="firstName"
-                    className="text-lime-700 font-bold text-base sm:text-lg sm:min-w-[140px] sm:text-right"
-                  >
-                    NOME
-                  </Label>
-                  <div className="flex-1 flex flex-col sm:flex-row gap-2 sm:gap-4">
+                {/* Form */}
+                <div className="p-4 sm:p-8 bg-white space-y-4 sm:space-y-6">
+                  {/* Last Name */}
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+                    <Label
+                      htmlFor="lastName"
+                      className="text-[#000000] font-bold text-base sm:text-lg sm:min-w-[140px] sm:text-right"
+                    >
+                      COGNOME
+                    </Label>
                     <Input
-                      id="firstName"
-                      name="firstName"
-                      value={data.firstName}
+                      id="lastName"
+                      name="lastName"
+                      value={data.lastName}
                       onChange={handleInputChange}
                       className="flex-1 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg"
                       required
                     />
-                    <div className="flex items-center gap-2 sm:gap-4">
-                      <Label
-                        htmlFor="gender"
-                        className="text-lime-700 font-bold text-base sm:text-lg whitespace-nowrap"
-                      >
-                        SESSO
-                      </Label>
-                      <Select
-                        value={data.gender}
-                        onValueChange={(value) =>
-                          handleSelectChange("gender", value)
-                        }
-                      >
-                        <SelectTrigger className="w-16 sm:w-20 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="M">M</SelectItem>
-                          <SelectItem value="F">F</SelectItem>
-                        </SelectContent>
-                      </Select>
+                  </div>
+
+                  {/* First Name and Gender */}
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+                    <Label
+                      htmlFor="firstName"
+                      className="text-[#000000] font-bold text-base sm:text-lg sm:min-w-[140px] sm:text-right"
+                    >
+                      NOME
+                    </Label>
+                    <div className="flex-1 flex flex-col sm:flex-row gap-2 sm:gap-4">
+                      <Input
+                        id="firstName"
+                        name="firstName"
+                        value={data.firstName}
+                        onChange={handleInputChange}
+                        className="flex-1 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg"
+                        required
+                      />
+                      <div className="flex items-center gap-2 sm:gap-4">
+                        <Label
+                          htmlFor="gender"
+                          className="text-[#000000] font-bold text-base sm:text-lg whitespace-nowrap"
+                        >
+                          SESSO
+                        </Label>
+                        <Select
+                          value={data.gender}
+                          onValueChange={(value) =>
+                            handleSelectChange("gender", value)
+                          }
+                        >
+                          <SelectTrigger className="w-16 sm:w-20 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-[#000000] text-base sm:text-lg font-semibold">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="M">M</SelectItem>
+                            <SelectItem value="F">F</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Place of Birth */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-                  <Label
-                    htmlFor="place"
-                    className="text-lime-700 font-bold text-base sm:text-lg sm:min-w-[140px] sm:text-right leading-tight"
-                  >
-                    LUOGO DI
-                    <br />
-                    NASCITA
-                  </Label>
-                  <div className="flex-1 relative">
-                    <Input
-                      id="place"
-                      name="place"
-                      value={data.place}
-                      onChange={handleInputChange}
-                      className="w-full h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg"
-                      required
-                      autoComplete="off"
-                    />
-                    {suggestions.length > 0 && (
-                      <div className="absolute z-10 w-full mt-1 bg-white border-2 border-gray-300 rounded-lg shadow-lg">
-                        {suggestions.map((city, index) => (
-                          <div
-                            key={index}
-                            className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base sm:text-lg"
-                            onClick={() => handleSuggestionClick(city)}
+                  {/* Place of Birth */}
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+                    <Label
+                      htmlFor="place"
+                      className="text-[#000000] font-bold text-base sm:text-lg sm:min-w-[140px] sm:text-right leading-tight"
+                    >
+                      LUOGO DI
+                      <br />
+                      NASCITA
+                    </Label>
+                    <div className="flex-1 relative">
+                      <Input
+                        id="place"
+                        name="place"
+                        value={data.place}
+                        onChange={handleInputChange}
+                        className="w-full h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg"
+                        required
+                        autoComplete="off"
+                      />
+                      {suggestions.length > 0 && (
+                        <div className="absolute z-10 w-full mt-1 bg-white border-2 border-gray-300 rounded-lg shadow-lg">
+                          {suggestions.map((city, index) => (
+                            <div
+                              key={index}
+                              className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-base sm:text-lg"
+                              onClick={() => handleSuggestionClick(city)}
+                            >
+                              {city}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Province and Date of Birth */}
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+                    <Label
+                      htmlFor="provincia"
+                      className="text-[#000000] font-bold text-base sm:text-lg sm:min-w-[140px] sm:text-right leading-tight"
+                    >
+                      PROVINCIA
+                      <br />
+                      (SIGLA)
+                    </Label>
+                    <div className="flex-1 flex flex-col sm:flex-row gap-2 sm:gap-4">
+                      <Input
+                        id="provincia"
+                        name="provincia"
+                        maxLength={2}
+                        value={data.provincia}
+                        onChange={handleInputChange}
+                        className="w-20 sm:w-24 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg text-center font-semibold"
+                        required
+                        pattern="[A-Za-z]{2}"
+                        title="Two letter province code"
+                      />
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+                        <Label className="text-[#000000] font-bold text-base sm:text-lg whitespace-nowrap leading-tight">
+                          DATA DI
+                          <br />
+                          NASCITA
+                        </Label>
+                        <div className="flex gap-2 sm:gap-3">
+                          <Select
+                            defaultValue={data.day}
+                            onValueChange={(value) =>
+                              handleSelectChange("day", value)
+                            }
                           >
-                            {city}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Province and Date of Birth */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-                  <Label
-                    htmlFor="provincia"
-                    className="text-lime-700 font-bold text-base sm:text-lg sm:min-w-[140px] sm:text-right leading-tight"
-                  >
-                    PROVINCIA
-                    <br />
-                    (SIGLA)
-                  </Label>
-                  <div className="flex-1 flex flex-col sm:flex-row gap-2 sm:gap-4">
-                    <Input
-                      id="provincia"
-                      name="provincia"
-                      maxLength={2}
-                      value={data.provincia}
-                      onChange={handleInputChange}
-                      className="w-20 sm:w-24 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg text-center font-semibold"
-                      required
-                      pattern="[A-Za-z]{2}"
-                      title="Two letter province code"
-                    />
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-                      <Label className="text-lime-700 font-bold text-base sm:text-lg whitespace-nowrap leading-tight">
-                        DATA DI
-                        <br />
-                        NASCITA
-                      </Label>
-                      <div className="flex gap-2 sm:gap-3">
-                        <Select
-                          defaultValue={data.day}
-                          onValueChange={(value) =>
-                            handleSelectChange("day", value)
-                          }
-                        >
-                          <SelectTrigger className="w-16 sm:w-20 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent className="max-h-52 overflow-y-auto">
-                            {days.map((d) => (
-                              <SelectItem key={d} value={d}>
-                                {d}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <Select
-                          defaultValue={data.month}
-                          onValueChange={(value) =>
-                            handleSelectChange("month", value)
-                          }
-                        >
-                          <SelectTrigger className="w-16 sm:w-20 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent className="max-h-52 overflow-y-auto">
-                            {months.map((m) => (
-                              <SelectItem key={m} value={m}>
-                                {m}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                        <Select
-                          defaultValue={data.year}
-                          onValueChange={(value) =>
-                            handleSelectChange("year", value)
-                          }
-                        >
-                          <SelectTrigger className="w-20 sm:w-24 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent className="max-h-52 overflow-y-auto">
-                            {years.map((y) => (
-                              <SelectItem key={y} value={y}>
-                                {y}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                            <SelectTrigger className="w-16 sm:w-20 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent className="max-h-52 overflow-y-auto">
+                              {days.map((d) => (
+                                <SelectItem key={d} value={d}>
+                                  {d}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <Select
+                            defaultValue={data.month}
+                            onValueChange={(value) =>
+                              handleSelectChange("month", value)
+                            }
+                          >
+                            <SelectTrigger className="w-16 sm:w-20 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent className="max-h-52 overflow-y-auto">
+                              {months.map((m) => (
+                                <SelectItem key={m} value={m}>
+                                  {m}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <Select
+                            defaultValue={data.year}
+                            onValueChange={(value) =>
+                              handleSelectChange("year", value)
+                            }
+                          >
+                            <SelectTrigger className="w-20 sm:w-24 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent className="max-h-52 overflow-y-auto">
+                              {years.map((y) => (
+                                <SelectItem key={y} value={y}>
+                                  {y}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Submit Button */}
-            <div className="mt-4 sm:mt-6">
-              <Button
-                type="submit"
-                disabled={isLoading}
-                className="w-full bg-gradient-to-r from-lime-500 to-green-500 hover:from-lime-600 hover:to-green-600 text-white font-bold py-4 sm:py-6 text-lg sm:text-xl rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl transform transition-all duration-200 hover:scale-105 hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isLoading ? "Generando..." : "Calcola il Codice Fiscale"}
-              </Button>
-            </div>
-
-            {/* Error Message */}
-            {error && (
-              <div className="mt-4 sm:mt-6 bg-red-50 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center shadow-md sm:shadow-lg border-2 border-red-300">
-                <p className="text-lg sm:text-xl font-semibold text-red-700">
-                  {error}
-                </p>
+              {/* Submit Button */}
+              <div className="mt-4 sm:mt-6 px-4">
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="w-full bg-[#DDC092] hover:bg-[#666666] text-white font-bold py-4 sm:py-6 text-lg sm:text-xl rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl transform transition-all duration-200 hover:scale-105 hover:shadow-2xl disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? "Generando..." : "Calcola il Codice Fiscale"}
+                </Button>
               </div>
-            )}
 
-            {/* Result */}
-            {code && (
-              <div className="mt-4 sm:mt-6 bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 text-center shadow-md sm:shadow-lg border-2 border-green-300">
-                <p className="text-lg sm:text-xl font-semibold text-green-700">
-                  Codice Fiscale Generato:{" "}
-                  <span className="font-bold">{code}</span>
-                </p>
-              </div>
-            )}
+              {/* Error Message */}
+              {error && (
+                <div className="mt-4 sm:mt-6 bg-red-50 rounded-lg sm:rounded-xl p-3 sm:p-4 text-center shadow-md sm:shadow-lg border-2 border-red-300">
+                  <p className="text-lg sm:text-xl font-semibold text-red-700">
+                    {error}
+                  </p>
+                </div>
+              )}
+
+              {/* Result */}
+              {code && (
+                <div className="mt-4 sm:mt-6 bg-white rounded-lg sm:rounded-xl p-3 sm:p-4 text-center shadow-md sm:shadow-lg border-2 border-green-300">
+                  <p className="text-lg sm:text-xl font-semibold text-green-700">
+                    Codice Fiscale Generato:{" "}
+                    <span className="font-bold">{code}</span>
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }

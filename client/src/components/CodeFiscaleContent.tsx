@@ -1,18 +1,12 @@
 export default function CodeFiscaleContent() {
   return (
-    <div
-      className="min-h-screen p-6 md:p-8"
-      style={{
-        background:
-          "linear-gradient(135deg, #a0f0ed 0%, #7dd3fc 25%, #67e8f9 50%, #22d3ee 75%, #06b6d4 100%)",
-      }}
-    >
+    <div className="min-h-screen pt-10 mt-10">
       <div className="max-w-4xl mx-auto">
         {/* Main Content Card */}
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border-4 border-white">
+        <div className="overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-lime-500 to-green-500 px-6 md:px-8 py-6 md:py-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-white tracking-wide">
+          <div className="px-4">
+            <h1 className="text-3xl md:text-4xl font-bold italic text-black tracking-wide">
               Codice Fiscale: cos'è e come si calcola
             </h1>
           </div>
@@ -21,7 +15,7 @@ export default function CodeFiscaleContent() {
           <div className="p-6 md:p-8 space-y-6">
             <div className="text-gray-800 space-y-4 leading-relaxed">
               <p className="text-lg">
-                Il <strong className="text-lime-700">codice fiscale</strong> è
+                Il <strong className="text-[#DDC092]">codice fiscale</strong> è
                 un codice utilizzato ai fini fiscali ed amministrativi per
                 identificare in modo univoco i cittadini italiani.
               </p>
@@ -34,7 +28,7 @@ export default function CodeFiscaleContent() {
 
               <p className="text-lg">
                 Per il{" "}
-                <strong className="text-lime-700">
+                <strong className="text-[#DDC092]">
                   calcolo del codice fiscale
                 </strong>{" "}
                 si procede grossomodo così:
@@ -43,32 +37,32 @@ export default function CodeFiscaleContent() {
               {/* Bullet Points */}
               <ul className="space-y-3 ml-4 text-lg">
                 <li className="flex items-start gap-2">
-                  <span className="text-lime-600 font-bold">•</span>
+                  <span className="text-[#DDC092] font-bold">•</span>
                   <span>
                     le prime tre lettere del codice fiscale sono prese dal
                     cognome (solitamente prima, seconda e terza consonante)
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-lime-600 font-bold">•</span>
+                  <span className="text-[#DDC092] font-bold">•</span>
                   <span>
                     le seconde tre dal nome (solitamente prima, terza e quarta
                     consonante)
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-lime-600 font-bold">•</span>
+                  <span className="text-[#DDC092] font-bold">•</span>
                   <span>le ultime due cifre dell'anno di nascita</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-lime-600 font-bold">•</span>
+                  <span className="text-[#DDC092] font-bold">•</span>
                   <span>
                     una lettera per il mese (A = Gennaio, B, C, D, E, H, L, M,
                     P, R, S, T = Dicembre)
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-lime-600 font-bold">•</span>
+                  <span className="text-[#DDC092] font-bold">•</span>
                   <span>
                     il giorno di nascita: in caso di sesso femminile si aggiunge
                     40 per cui è chiaro che se si trova scritto, ad esempio, 52,
@@ -76,11 +70,11 @@ export default function CodeFiscaleContent() {
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-lime-600 font-bold">•</span>
+                  <span className="text-[#DDC092] font-bold">•</span>
                   <span>Codice del comune (quattro caratteri)</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-lime-600 font-bold">•</span>
+                  <span className="text-[#DDC092] font-bold">•</span>
                   <span>
                     Carattere di controllo, per verificare la correttezza del
                     codice fiscale.
@@ -92,7 +86,7 @@ export default function CodeFiscaleContent() {
                 (per dettagli più precisi si veda{" "}
                 <a
                   href="#"
-                  className="text-lime-700 hover:text-lime-800 underline font-medium"
+                  className="text-[#DDC092] hover:text-lime-800 underline font-medium"
                 >
                   codice fiscale su wikipedia
                 </a>
@@ -113,13 +107,13 @@ export default function CodeFiscaleContent() {
             {/* White Box Section */}
             <div className="bg-gradient-to-r from-lime-50 to-green-50 rounded-xl p-6 border-2 border-lime-200">
               <p className="text-gray-800 text-lg">
-                <strong className="text-lime-700">
+                <strong className="text-[#DDC092]">
                   Devi verificare un codice fiscale o estrarre i dati?
                 </strong>{" "}
                 Vai alla pagina{" "}
                 <a
                   href="#"
-                  className="text-lime-700 hover:text-lime-800 underline font-medium"
+                  className="text-[#DDC092] hover:text-lime-800 underline font-medium"
                 >
                   codice fiscale inverso
                 </a>
@@ -132,7 +126,7 @@ export default function CodeFiscaleContent() {
                 Servizio offerto gratuitamente dalla{" "}
                 <a
                   href="#"
-                  className="text-lime-700 hover:text-lime-800 underline font-medium"
+                  className="text-[#DDC092] hover:text-lime-800 underline font-medium"
                 >
                   intelliAM S.r.l.
                 </a>{" "}
@@ -151,7 +145,7 @@ export default function CodeFiscaleContent() {
               <div className="pt-4">
                 <a
                   href="#"
-                  className="text-lime-700 hover:text-lime-800 underline text-sm font-medium"
+                  className="text-[#DDC092] hover:text-lime-800 underline text-sm font-medium"
                 >
                   Cookie Policy
                 </a>
