@@ -108,7 +108,7 @@ export default function TaxCodeCalculator() {
     // https://codice-fiscale-backend.onrender.com
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/generate",
+        "https://codice-fiscale-backend.onrender.com/api/generate",
         payload
       );
       setCode(res.data.code);
