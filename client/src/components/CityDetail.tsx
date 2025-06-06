@@ -39,7 +39,9 @@ export default function CityDetail() {
     const fetchCityData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/city/${encodeURIComponent(cityName)}`
+          `${
+            import.meta.env.VITE_API_URL || "http://localhost:5000"
+          }/api/city/${encodeURIComponent(cityName)}`
         );
         setCity(response.data);
       } catch (err) {
