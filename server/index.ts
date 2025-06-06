@@ -39,6 +39,17 @@ app.get("/api/postal-code", (req: Request, res: Response) => {
   res.json(result);
 });
 
+app.get("/api/city/:cityName", (req: Request, res: Response) => {
+  const cityName = req.params.cityName.toLowerCase();
+  const city = postalData.find(
+    (entry) => entry.city.toLowerCase() === cityName
+  );
+  if (!city) {
+    return res.status(404).json({ error: "City not found" });
+  }
+  res.json(city);
+});
+
 app.get("/", (req: Request, res: Response) => res.send("ok"));
 
 app.listen(5000, () => {

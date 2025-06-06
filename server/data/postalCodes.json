@@ -1,5 +1,45 @@
 [
-  { "city": "Roma", "province": "RM", "postalCode": "00100" },
-  { "city": "Milano", "province": "MI", "postalCode": "20100" },
-  { "city": "Napoli", "province": "NA", "postalCode": "80100" }
+  {
+    "city": "Alessandria",
+    "province": "AL",
+    "postalCode": "15121",
+    "postalRange": ["15121", "15122"],
+    "oldCode": "15100",
+    "mayor": "George Abonante",
+    "mayorImg": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Placeholder_Person.png",
+    "municipalityUrl": "https://www.comune.alessandria.it/",
+    "population": "91,936",
+    "prefix": "0131",
+    "crest": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Placeholder_CoA.png",
+    "address": "Piazza della Libertà, 1",
+    "region": "Piedmont",
+    "belfiore": "A182"
+  },
+  {
+    "city": "Roma",
+    "province": "RM",
+    "postalCode": "00100",
+    "address": "Via dei Fori Imperiali",
+    "region": "Lazio",
+    "prefix": "06",
+    "belfiore": "H501"
+  },
+  {
+    "city": "Milano",
+    "province": "MI",
+    "postalCode": "20100",
+    "address": "Piazza del Duomo",
+    "region": "Lombardy",
+    "prefix": "02",
+    "belfiore": "F205"
+  },
+  {
+    "city": "Napoli",
+    "province": "NA",
+    "postalCode": "80100",
+    "address": "Via Toledo",
+    "region": "Campania",
+    "prefix": "081",
+    "belfiore": "F839"
+  }
 ]
