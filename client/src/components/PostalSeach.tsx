@@ -12,7 +12,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "./ui/table";
 
 interface PostalEntry {
   city: string;
@@ -43,7 +43,9 @@ export default function PostalSearch() {
     setCurrentPage(1); // Reset to first page on new search
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/postal-code?query=${query}`
+        `${
+          import.meta.env.VITE_API_URL || "http://localhost:5000"
+        }/api/postal-code?query=${query}`
       );
       setResults(res.data);
     } catch (err) {
