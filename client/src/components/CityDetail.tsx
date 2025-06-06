@@ -1,8 +1,18 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 import logo from "../../src/assets/logo-codiceitalia-com_895x150.jpg";
-import SearchBar from "./SearchBar";
+import type { PostalEntry } from "./PostalCodeSearch";
+import PostalCodeSearch from "./PostalCodeSearch";
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "./ui/table";
 
 interface CityData {
   city: string;
@@ -18,13 +28,17 @@ interface CityData {
   crest?: string;
 }
 
+const itemsPerPage = 10; // Define items per page for pagination
+
 export default function CityDetail() {
   const { cityName } = useParams<{ cityName: string }>();
   // const navigate = useNavigate();
   const [city, setCity] = useState<CityData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [streetQuery, setStreetQuery] = useState("");
+  const [streetResults, setStreetResults] = useState<PostalEntry[]>([]);
+  const [streetLoading, setStreetLoading] = useState(false);
+  const [currentStreetPage, setCurrentStreetPage] = useState(1); // State for street search pagination
 
   useEffect(() => {
     if (!cityName) {
@@ -55,13 +69,16 @@ export default function CityDetail() {
     fetchCityData();
   }, [cityName]);
 
-  const handleStreetSearch = (e?: React.FormEvent) => {
-    if (e) {
-      e.preventDefault();
-    }
-    // TODO: Implement street search functionality
-    console.log("Searching for street:", streetQuery);
-  };
+  // Pagination logic for street search results
+  const currentStreetItems = useMemo(() => {
+    const startIndex = (currentStreetPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return streetResults.slice(startIndex, endIndex);
+  }, [streetResults, currentStreetPage]);
+
+  const totalStreetPages = useMemo(() => {
+    return Math.ceil(streetResults.length / itemsPerPage);
+  }, [streetResults]);
 
   if (loading) {
     return (
@@ -101,13 +118,17 @@ export default function CityDetail() {
               className="w-24 h-24 object-contain mb-4"
             />
           )}
-          <SearchBar
-            query={streetQuery}
-            setQuery={setStreetQuery}
-            onSearch={handleStreetSearch}
+          <PostalCodeSearch
+            onResultsChange={(results) => {
+              // Reset page on new search
+              setStreetResults(results);
+              setCurrentStreetPage(1);
+            }}
+            onLoadingChange={setStreetLoading}
             placeholder="street, square, ..."
             buttonText="Search Street"
             className="w-full max-w-md"
+            isLoading={streetLoading}
           />
         </div>
         <div className="text-center text-gray-700 mb-4">
@@ -139,6 +160,68 @@ export default function CityDetail() {
           </span>{" "}
           for "Via Giuseppe Mazzini".
         </div>
+
+        {/* Display street search results in a table */}
+        {streetResults.length > 0 && (
+          <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <div className="border rounded-md">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Address</TableHead>
+                    <TableHead>ZIP CODE</TableHead>
+                    <TableHead>City</TableHead>
+                    <TableHead>Region</TableHead>
+                    <TableHead>Pref</TableHead>
+                    <TableHead>Belfiore</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {currentStreetItems.map((entry, idx) => (
+                    <TableRow key={idx}>
+                      <TableCell>{entry.address || "-"}</TableCell>
+                      <TableCell>{entry.postalCode}</TableCell>
+                      <TableCell>{entry.city || "-"}</TableCell>
+                      <TableCell>{entry.region || "-"}</TableCell>
+                      <TableCell>{entry.prefix || "-"}</TableCell>
+                      <TableCell>{entry.belfiore || "-"}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+
+            {/* Pagination for street search results */}
+            {totalStreetPages > 1 && (
+              <div className="flex items-center justify-end space-x-2 py-4">
+                <button
+                  className="px-3 py-1 border rounded-md disabled:opacity-50"
+                  onClick={() =>
+                    setCurrentStreetPage((prev) => Math.max(prev - 1, 1))
+                  }
+                  disabled={currentStreetPage === 1}
+                >
+                  Previous
+                </button>
+                <span>
+                  Page {currentStreetPage} of {totalStreetPages}
+                </span>
+                <button
+                  className="px-3 py-1 border rounded-md disabled:opacity-50"
+                  onClick={() =>
+                    setCurrentStreetPage((prev) =>
+                      Math.min(prev + 1, totalStreetPages)
+                    )
+                  }
+                  disabled={currentStreetPage === totalStreetPages}
+                >
+                  Next
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+
         <div className="flex items-center gap-4 bg-gray-50 rounded-lg p-4 border mb-2">
           {city.mayorImg && (
             <img
