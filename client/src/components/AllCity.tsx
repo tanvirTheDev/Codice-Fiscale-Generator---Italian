@@ -47,7 +47,7 @@ const cities = [
 export default function AllCity() {
   return (
     <div style={{ background: "#fafbfc", padding: 16, borderRadius: 4 }}>
-      {cities.map((city, idx) => (
+      {cities.map((city) => (
         <Link
           key={city.name}
           to={`/city/${encodeURIComponent(city.name)}`}

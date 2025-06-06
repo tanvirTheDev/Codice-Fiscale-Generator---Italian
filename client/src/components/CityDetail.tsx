@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import logo from "../../src/assets/logo-codiceitalia-com_895x150.jpg";
 import SearchBar from "./SearchBar";
 
@@ -20,7 +20,7 @@ interface CityData {
 
 export default function CityDetail() {
   const { cityName } = useParams<{ cityName: string }>();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [city, setCity] = useState<CityData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
