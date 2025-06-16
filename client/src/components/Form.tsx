@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/select";
 import axios from "axios";
 import { useState } from "react";
-import logo from "../../src/assets/logo-codiceitalia-com_895x150.jpg";
 
 // Common Italian cities for autocomplete
 const COMMON_CITIES = [
@@ -140,13 +139,6 @@ export default function TaxCodeCalculator() {
 
   return (
     <div className="h-full md:h-auto md:min-h-[600px] lg:min-h-screen bg-white">
-      <div className="flex justify-center border-b-[1px] border-[#ddd] bg-white">
-        <img
-          src={logo}
-          className="w-[220px] sm:w-[320px] md:w-[365px] h-auto max-h-[60px] pb-2 object-contain"
-          alt="Logo"
-        />
-      </div>
       <div className="flex justify-center py-4 sm:py-6 md:py-8">
         <form
           onSubmit={handleSubmit}

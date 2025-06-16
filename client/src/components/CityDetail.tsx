@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
-import logo from "../../src/assets/logo-codiceitalia-com_895x150.jpg";
 import type { PostalEntry } from "./PostalCodeSearch";
 import PostalCodeSearch from "./PostalCodeSearch";
 
@@ -98,13 +97,6 @@ export default function CityDetail() {
 
   return (
     <div className="min-h-screen bg-white">
-      <div className="flex justify-center border-b-[1px] border-[#ddd] bg-white">
-        <img
-          src={logo}
-          className="w-[220px] sm:w-[320px] md:w-[365px] h-auto max-h-[60px] pb-2 object-contain"
-          alt="Logo"
-        />
-      </div>
       <div className="max-w-3xl mx-auto px-4 py-8">
         <h1 className="text-2xl font-bold text-green-700 mb-2">
           ZIP code {city.city}
