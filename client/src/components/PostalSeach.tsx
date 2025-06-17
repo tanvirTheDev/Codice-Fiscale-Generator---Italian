@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../src/assets/logo-codiceitalia-com_895x150.jpg";
 import AllCity from "./AllCity";
 import type { PostalEntry } from "./PostalCodeSearch";
 import PostalCodeSearch from "./PostalCodeSearch";
@@ -40,14 +39,6 @@ export default function PostalSearch() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="flex justify-center mb-8">
-          <img
-            src={logo}
-            className="w-[220px] sm:w-[320px] md:w-[365px] h-auto max-h-[60px] object-contain"
-            alt="Logo"
-          />
-        </div>
-
         <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
           <h2 className="text-2xl font-semibold text-gray-800 mb-6">
             Postal Code Search
