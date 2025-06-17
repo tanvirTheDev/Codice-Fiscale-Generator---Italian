@@ -27,7 +27,10 @@ export default function SearchBar({
   };
 
   return (
-    <form onSubmit={onSearch} className={`flex gap-2 ${className}`}>
+    <form
+      onSubmit={onSearch}
+      className={`flex gap-2 flex-col md:flex-row ${className}`}
+    >
       <input
         className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DD9933] focus:border-transparent"
         placeholder={placeholder}
