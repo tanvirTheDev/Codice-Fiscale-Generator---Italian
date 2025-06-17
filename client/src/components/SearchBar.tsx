@@ -29,7 +29,7 @@ export default function SearchBar({
   return (
     <form onSubmit={onSearch} className={`flex gap-2 ${className}`}>
       <input
-        className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#DD9933] focus:border-transparent"
         placeholder={placeholder}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
@@ -38,7 +38,7 @@ export default function SearchBar({
       <button
         type="submit"
         disabled={isLoading}
-        className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="px-6 py-2 bg-[#DD9933] text-white rounded-lg hover:bg-[#DD9933] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isLoading ? "Searching..." : buttonText}
       </button>
