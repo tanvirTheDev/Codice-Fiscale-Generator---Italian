@@ -5,3 +5,14 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+/* For WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+/* For Firefox */
+body {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
