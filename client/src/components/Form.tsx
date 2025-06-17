@@ -258,16 +258,18 @@ export default function TaxCodeCalculator() {
                   </div>
 
                   {/* Province and Date of Birth */}
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
-                    <Label
-                      htmlFor="provincia"
-                      className="text-[#000000] font-bold text-base sm:text-lg sm:min-w-[140px] sm:text-right leading-tight"
-                    >
-                      PROVINCIA
-                      <br />
-                      (SIGLA)
-                    </Label>
-                    <div className="flex-1 flex flex-col sm:flex-row gap-2 sm:gap-4">
+                  {/* Province and Date of Birth - stacked vertically */}
+                  <div className="flex flex-col gap-4">
+                    {/* Provincia */}
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+                      <Label
+                        htmlFor="provincia"
+                        className="text-[#000000] font-bold text-base sm:text-lg sm:min-w-[140px] sm:text-right leading-tight"
+                      >
+                        PROVINCIA
+                        <br />
+                        (SIGLA)
+                      </Label>
                       <Input
                         id="provincia"
                         name="provincia"
@@ -279,65 +281,72 @@ export default function TaxCodeCalculator() {
                         pattern="[A-Za-z]{2}"
                         title="Two letter province code"
                       />
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-                        <Label className="text-[#000000] font-bold text-base sm:text-lg whitespace-nowrap leading-tight">
-                          DATA DI
-                          <br />
-                          NASCITA
-                        </Label>
-                        <div className="flex gap-2 sm:gap-3">
-                          <Select
-                            defaultValue={data.day}
-                            onValueChange={(value) =>
-                              handleSelectChange("day", value)
-                            }
-                          >
-                            <SelectTrigger className="w-16 sm:w-20 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent className="max-h-52 overflow-y-auto">
-                              {days.map((d) => (
-                                <SelectItem key={d} value={d}>
-                                  {d}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          <Select
-                            defaultValue={data.month}
-                            onValueChange={(value) =>
-                              handleSelectChange("month", value)
-                            }
-                          >
-                            <SelectTrigger className="w-16 sm:w-20 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent className="max-h-52 overflow-y-auto">
-                              {months.map((m) => (
-                                <SelectItem key={m} value={m}>
-                                  {m}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                          <Select
-                            defaultValue={data.year}
-                            onValueChange={(value) =>
-                              handleSelectChange("year", value)
-                            }
-                          >
-                            <SelectTrigger className="w-20 sm:w-24 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent className="max-h-52 overflow-y-auto">
-                              {years.map((y) => (
-                                <SelectItem key={y} value={y}>
-                                  {y}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        </div>
+                    </div>
+
+                    {/* Data di Nascita */}
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+                      <Label className="text-[#000000] font-bold text-base sm:text-lg sm:min-w-[140px] sm:text-right leading-tight">
+                        DATA DI
+                        <br />
+                        NASCITA
+                      </Label>
+                      <div className="flex gap-2 sm:gap-3">
+                        {/* Day */}
+                        <Select
+                          defaultValue={data.day}
+                          onValueChange={(value) =>
+                            handleSelectChange("day", value)
+                          }
+                        >
+                          <SelectTrigger className="w-16 sm:w-20 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent className="max-h-52 overflow-y-auto">
+                            {days.map((d) => (
+                              <SelectItem key={d} value={d}>
+                                {d}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+
+                        {/* Month */}
+                        <Select
+                          defaultValue={data.month}
+                          onValueChange={(value) =>
+                            handleSelectChange("month", value)
+                          }
+                        >
+                          <SelectTrigger className="w-16 sm:w-20 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent className="max-h-52 overflow-y-auto">
+                            {months.map((m) => (
+                              <SelectItem key={m} value={m}>
+                                {m}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+
+                        {/* Year */}
+                        <Select
+                          defaultValue={data.year}
+                          onValueChange={(value) =>
+                            handleSelectChange("year", value)
+                          }
+                        >
+                          <SelectTrigger className="w-20 sm:w-24 h-10 sm:h-12 border-2 border-gray-300 rounded-lg focus:border-lime-500 text-base sm:text-lg font-semibold">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent className="max-h-52 overflow-y-auto">
+                            {years.map((y) => (
+                              <SelectItem key={y} value={y}>
+                                {y}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
                       </div>
                     </div>
                   </div>
