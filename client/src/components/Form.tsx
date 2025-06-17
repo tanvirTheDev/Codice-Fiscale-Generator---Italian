@@ -138,7 +138,7 @@ export default function TaxCodeCalculator() {
   const years = Array.from({ length: 125 }, (_, i) => String(2024 - i));
 
   return (
-    <div className="h-full md:h-auto md:min-h-[600px] lg:min-h-screen bg-white">
+    <div className="h-full bg-white">
       <div className="flex justify-start py-4 sm:py-6 md:py-8">
         <form
           onSubmit={handleSubmit}
