@@ -1,7 +1,7 @@
 export default function CodeFiscaleContent() {
   return (
     <div className="min-h-screen pt-10 mt-10">
-      <div className="max-w-4xl mx-auto">
+      <div className="w-full px-4 md:px-8 mx-auto">
         {/* Main Content Card */}
         <div className="overflow-hidden">
           {/* Header */}

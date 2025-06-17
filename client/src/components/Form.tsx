@@ -139,7 +139,7 @@ export default function TaxCodeCalculator() {
 
   return (
     <div className="h-full md:h-auto md:min-h-[600px] lg:min-h-screen bg-white">
-      <div className="flex justify-center py-4 sm:py-6 md:py-8">
+      <div className="flex justify-start py-4 sm:py-6 md:py-8">
         <form
           onSubmit={handleSubmit}
           className="w-full max-w-lg sm:max-w-2xl md:max-w-3xl px-2 sm:px-4 md:px-0"
