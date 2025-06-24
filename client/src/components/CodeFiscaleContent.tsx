@@ -6,7 +6,7 @@ export default function CodeFiscaleContent() {
         <div className="overflow-hidden">
           {/* Header */}
           <div className="px-4">
-            <h1 className="text-3xl md:text-4xl font-bold italic text-black tracking-wide">
+            <h1 className=" text-[30px] sm:text-[20px] md:text-[25px] font-bold italic text-black tracking-wide">
               Codice Fiscale: cos'è e come si calcola
             </h1>
           </div>

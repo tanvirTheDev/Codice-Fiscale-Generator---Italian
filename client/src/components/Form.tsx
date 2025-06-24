@@ -150,10 +150,10 @@ export default function TaxCodeCalculator() {
                 {/* Header */}
                 <div className="text-black px-2 sm:px-8 mt-5 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
                   <div className="text-black flex-1 text-center sm:text-left">
-                    <h1 className="text-2xl sm:text-4xl font-bold tracking-wide">
+                    <h1 className="text-[30px] sm:text-[20px] md:text-[25px] font-bold tracking-wide">
                       Calcolo Codice Fiscale
                     </h1>
-                    <p className="text-black text-sm sm:text-lg mt-1 font-medium">
+                    <p className="text-black text-[18px] mt-1 font-medium">
                       Calcola il codice fiscale online
                     </p>
                   </div>
