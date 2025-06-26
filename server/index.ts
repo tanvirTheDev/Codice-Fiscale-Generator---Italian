@@ -42,7 +42,10 @@ app.get("/api/postal-code", (req: Request, res: Response) => {
 app.get("/api/city/:cityName", (req: Request, res: Response) => {
   const cityName = req.params.cityName.toLowerCase();
   const city = postalData.find(
-    (entry) => entry.city.toLowerCase() === cityName
+    (entry) =>
+      entry.city.toLowerCase() === cityName ||
+      (Array.isArray(entry.aliases) &&
+        entry.aliases.some((alias) => alias.toLowerCase() === cityName))
   );
   if (!city) {
     return res.status(404).json({ error: "City not found" });

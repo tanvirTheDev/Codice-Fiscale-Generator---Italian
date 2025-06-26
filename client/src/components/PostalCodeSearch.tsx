@@ -37,6 +37,9 @@ export default function PostalCodeSearch({
     if (!query.trim()) return;
 
     onLoadingChange(true);
+    // ${
+    //   import.meta.env.VITE_API_URL || "http://localhost:5000"
+    // }
     try {
       const res = await axios.get(
         `${
