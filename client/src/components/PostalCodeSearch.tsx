@@ -42,9 +42,7 @@ export default function PostalCodeSearch({
     // }
     try {
       const res = await axios.get(
-        `${
-          import.meta.env.VITE_API_URL || "http://localhost:5000"
-        }/api/postal-code?query=${query}`
+        `https://codice-fiscale-backend.onrender.com/api/postal-code?query=${query}`
       );
       onResultsChange(res.data);
     } catch (err) {
